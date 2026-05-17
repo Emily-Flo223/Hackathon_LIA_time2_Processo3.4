@@ -1,0 +1,31 @@
+arquivo,id_relatorio,protocolo,tipo_relatorio,tipo_erro,categoria_esperada,descricao_erro
+relatorio_01_E3.docx,82131636,FAENG.479201,Parcial,E3,DEVOLVER PARA AJUSTES,Periodo do bolsista fora do vinculo formal
+relatorio_02_E1.pdf,93794303,FAENG.216970,Parcial,E1,DEVOLVER PARA AJUSTES,"Valor declarado (R$ 27,042.51) diverge do concedido (R$ 22,990.44) em mais de 1%"
+relatorio_03_E1.pdf,95377510,CCBS.292401,Parcial,E1,DEVOLVER PARA AJUSTES,"Valor declarado (R$ 20,262.74) diverge do concedido (R$ 24,983.50) em mais de 1%"
+relatorio_04_E5.docx,88372828,FACOM.265409,Parcial,E5,DEVOLVER PARA AJUSTES,Total de horas inconsistente com soma das atividades
+relatorio_05_E4.pdf,85693898,FACOM.920391,Final,E4,DEVOLVER PARA REELABORACAO,Secao obrigatoria ausente
+relatorio_06_OK.pdf,89158189,INQUI.598216,Final,OK,APROVAR,Sem erros
+relatorio_07_OK.pdf,92153013,INQUI.720644,Parcial,OK,APROVAR,Sem erros
+relatorio_08_E1.docx,96471155,FAENG.381433,Parcial,E1,DEVOLVER PARA AJUSTES,"Valor declarado (R$ 15,926.90) diverge do concedido (R$ 15,106.54) em mais de 1%"
+relatorio_09_E1.pdf,83851253,FAENG.962050,Parcial,E1,DEVOLVER PARA AJUSTES,"Valor declarado (R$ 16,543.86) diverge do concedido (R$ 20,656.27) em mais de 1%"
+relatorio_10_E2.pdf,97036849,CCHS.591465,Final,E2,DEVOLVER PARA AJUSTES,Bolsista declarado nao consta na base oficial
+relatorio_11_OK.docx,89651317,CCHS.899929,Final,OK,APROVAR,Sem erros
+relatorio_12_E4.docx,90139819,FACOM.211834,Parcial,E4,DEVOLVER PARA REELABORACAO,Secao obrigatoria ausente
+relatorio_13_E6.pdf,96906021,FACOM.489033,Final,E6,DEVOLVER PARA AJUSTES,Tipo de relatorio inadequado para a fase do projeto
+relatorio_14_E3.docx,89347198,CPAQ.847006,Parcial,E3,DEVOLVER PARA AJUSTES,Periodo do bolsista fora do vinculo formal
+relatorio_15_E2.pdf,82638958,FACOM.456331,Parcial,E2,DEVOLVER PARA AJUSTES,Bolsista declarado nao consta na base oficial
+relatorio_16_E5.docx,88312899,FACOM.468154,Parcial,E5,DEVOLVER PARA AJUSTES,Total de horas inconsistente com soma das atividades
+relatorio_17_OK.docx,94685882,FAENG.154909,Final,OK,APROVAR,Sem erros
+relatorio_18_E1.pdf,87236172,CCHS.975679,Final,E1,DEVOLVER PARA AJUSTES,"Valor declarado (R$ 17,026.81) diverge do concedido (R$ 20,788.50) em mais de 1%"
+relatorio_19_E2.docx,86268545,FACOM.579318,Parcial,E2,DEVOLVER PARA AJUSTES,Bolsista declarado nao consta na base oficial
+relatorio_20_OK.docx,98454841,FAALC.207581,Parcial,OK,APROVAR,Sem erros
+relatorio_21_E2.pdf,95584092,FACOM.127560,Parcial,E2,DEVOLVER PARA AJUSTES,Bolsista declarado nao consta na base oficial
+relatorio_22_E6.docx,92267714,FAALC.353480,Final,E6,DEVOLVER PARA AJUSTES,Tipo de relatorio inadequado para a fase do projeto
+relatorio_23_OK.docx,88604831,FAENG.579187,Final,OK,APROVAR,Sem erros
+relatorio_24_E4.pdf,85359207,FACOM.802371,Final,E4,DEVOLVER PARA REELABORACAO,Secao obrigatoria ausente
+relatorio_25_OK.docx,88305125,FACOM.491774,Final,OK,APROVAR,Sem erros
+relatorio_26_OK.pdf,86815827,FACOM.722795,Parcial,OK,APROVAR,Sem erros
+relatorio_27_E4.docx,80317095,FAALC.409531,Final,E4,DEVOLVER PARA REELABORACAO,Secao obrigatoria ausente
+relatorio_28_OK.pdf,98774930,FAENG.598598,Parcial,OK,APROVAR,Sem erros
+relatorio_29_OK.docx,96753835,FACOM.555791,Parcial,OK,APROVAR,Sem erros
+relatorio_30_E3.pdf,83414232,FAALC.631221,Parcial,E3,DEVOLVER PARA AJUSTES,Periodo do bolsista fora do vinculo formal

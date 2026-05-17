@@ -1,0 +1,3 @@
+Extraia os dados do seguinte relatório bruto:
+
+{texto_bruto}
