@@ -38,8 +38,15 @@ def check_completeness_and_hours(state: AgenteState) -> dict: # <-- Alterado par
         if not getattr(state.recursos, 'categorias', None):
             campos_faltantes.append("Prestação de Contas (Tabela de Gastos)")
 
-    # Atividades
-    if not state.atividades or len(state.atividades) == 0:
+    # Atividades — só marca E4 se NENHUMA seção narrativa de execução foi preenchida.
+    # Relatórios em formato discursivo (PDF narrativo) descrevem atividades no texto
+    # em vez de tabelas estruturadas; não penalizar por extração estrutural vazia.
+    tem_texto_execucao = bool(
+        getattr(state.secoes, 'sintese_execucao', '') or
+        getattr(state.secoes, 'resultados_alcancados', '') or
+        getattr(state.secoes, 'metodologia', '')
+    )
+    if (not state.atividades or len(state.atividades) == 0) and not tem_texto_execucao:
         campos_faltantes.append("Atividades Realizadas")
 
     # Seções textuais
@@ -70,18 +77,23 @@ def check_completeness_and_hours(state: AgenteState) -> dict: # <-- Alterado par
     # ════════════════════════════════════════════════════════════════════════
     soma_calculada = sum(a.carga_horaria_h for a in state.atividades) if state.atividades else 0
     total_declarado = state.total_horas_declarado if state.total_horas_declarado else 0
+    tem_atividades_estruturadas = bool(state.atividades and len(state.atividades) > 0)
 
-    if soma_calculada != total_declarado:
+    if not tem_atividades_estruturadas:
+        # Sem atividades extraídas não é possível calcular a soma — não disparar E5
+        motivo_e5 = "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo)."
+        evidencia_e5 = "Verificação E5 ignorada — atividades em formato de texto, não tabular."
+        check_hor = CheckResult(passou=True, motivo=motivo_e5, evidencia=evidencia_e5)
+        novos_logs.append("[check_completeness] SKIP (E5) — Sem atividades estruturadas.")
+    elif soma_calculada != total_declarado:
         motivo_e5 = "E5: Inconsistência no somatório da carga horária."
         evidencia_e5 = f"Soma das atividades ({len(state.atividades)} itens): {soma_calculada}h | Total declarado pelo coordenador: {total_declarado}h"
-        
         check_hor = CheckResult(passou=False, motivo=motivo_e5, evidencia=evidencia_e5)
         novas_divergencias.append(motivo_e5)
         novos_logs.append(f"[check_completeness] FALHOU (E5) — {motivo_e5}")
     else:
         motivo_e5 = "O somatório de horas das atividades coincide com o total declarado."
         evidencia_e5 = f"Soma das atividades: {soma_calculada}h | Total declarado: {total_declarado}h"
-        
         check_hor = CheckResult(passou=True, motivo=motivo_e5, evidencia=evidencia_e5)
         novos_logs.append("[check_completeness] OK (E5) — Consistência matemática das horas validada.")
 

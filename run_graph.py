@@ -2,6 +2,7 @@
 run_graph.py — Script principal para testar o Grafo do Agente com limite de relatórios
 """
 
+import os
 import uuid
 from pathlib import Path
 from graph import build_graph
@@ -69,8 +70,14 @@ def main():
         print("ERRO: Nenhum relatorio comecando com 'relatorio_' foi localizado na pasta 'data'.")
         return
 
-    # Aplica o limite selecionado na configuração
-    relatorios_selecionados = todos_relatorios[:QUANTIDADE_A_EXECUTAR]
+    # Se RELATORIOS_ESPECIFICOS estiver definido, processa só esses arquivos
+    especificos = os.environ.get("RELATORIOS_ESPECIFICOS", "").strip()
+    if especificos:
+        nomes = [n.strip() for n in especificos.split(",") if n.strip()]
+        relatorios_selecionados = [data_dir / n for n in nomes if (data_dir / n).exists()]
+        print(f"Modo reprocessamento: {len(relatorios_selecionados)} relatório(s) especificado(s).")
+    else:
+        relatorios_selecionados = todos_relatorios[:QUANTIDADE_A_EXECUTAR]
     
     print(f"======================================================================")
     print(f"Foram encontrados {total_encontrados} relatorios no total.")
