@@ -10,8 +10,7 @@ Constatamos inconformidades estruturais graves no documento enviado, tais como a
   
 Será necessário realizar a REELABORAÇÃO completa do documento e proceder com um novo envio após sanar as seguintes omissões detectadas:  
   
-  ❌ E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas, Síntese da Execução)  
-  ❌ E5: Inconsistência no somatório da carga horária.  
+  ❌ E4: Ausência de campos ou seções obrigatórias no relatório. (Síntese da Execução)  
   
 Por favor, certifique-se de preencher todos os campos de rito obrigatório antes de submeter uma nova submissão. Em caso de dúvidas, a equipe técnica da Coordenadoria de Extensão estará à disposição.  
   

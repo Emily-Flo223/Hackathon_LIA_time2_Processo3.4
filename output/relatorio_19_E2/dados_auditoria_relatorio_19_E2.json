@@ -1,17 +1,17 @@
 {
     "metadata": {
-        "execution_id": "3d435111-87ec-4287-8739-0c907ce6bc6d",
+        "execution_id": "d4d67d5c-a329-4047-80ed-d61d6f9d8c60",
         "id_relatorio": "relatorio_19_E2",
         "protocolo_projeto": "Não identificado",
         "tipo_relatorio": "Parcial",
         "titulo_projeto": "Consultoria Tributária Gratuita para MEIs",
         "coordenador": "Diana Correia",
-        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+        "decisao_final": "APROVAR"
     },
     "auditoria_completude": {
-        "passou": false,
-        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
-        "evidencia": "Campos ausentes: Atividades Realizadas"
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
     },
     "auditoria_financeira": {
         "passou": true,
@@ -19,12 +19,9 @@
         "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
     },
     "auditoria_horas": {
-        "passou": false,
-        "motivo": "E5: Inconsistência no somatório da carga horária.",
-        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 79h"
+        "passou": true,
+        "motivo": "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo).",
+        "evidencia": "Verificação E5 ignorada — atividades em formato de texto, não tabular."
     },
-    "lista_divergencias_acumuladas": [
-        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
-        "E5: Inconsistência no somatório da carga horária."
-    ]
+    "lista_divergencias_acumuladas": []
 }

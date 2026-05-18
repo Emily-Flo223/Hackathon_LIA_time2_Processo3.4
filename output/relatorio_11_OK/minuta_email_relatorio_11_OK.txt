@@ -4,17 +4,13 @@ Prezado(a) Coordenador(a) Ulisses Santos,
   
 Informamos que o Relatório Final de Ação de Extensão associado à submissão de protocolo Não identificado (<b>Contação de Histórias e Incentivo à Leitura</b>) passou pelo rito de auditoria digital e cruzamento automatizado de dados da PROECE.  
   
-A decisão final emitida pela comissão de fiscalização automatizada foi: <span style='color: red; font-weight: bold;'>DEVOLVER PARA REELABORAÇÃO</span>.  
+A decisão final emitida pela comissão de fiscalização automatizada foi: <span style='color: #DF9A00; font-weight: bold;'>DEVOLVER PARA AJUSTES</span>.  
   
-Constatamos inconformidades estruturais graves no documento enviado, tais como a ausência completa de seções textuais obrigatórias descritas nas resoluções normativas e no edital regulador. Devido à gravidade técnica, o relatório foi rejeitado em sua totalidade.  
+Identificamos divergências pontuais ou omissões menores de preenchimento que impedem a homologação imediata do documento. Solicitamos que aceda ao sistema corporativo e realize as devidas correções considerando as seguintes inconformidades apontadas pelo fiscal:  
   
-Será necessário realizar a REELABORAÇÃO completa do documento e proceder com um novo envio após sanar as seguintes omissões detectadas:  
+  ⚠️ E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento.  
   
-  ❌ E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)  
-  ❌ E5: Inconsistência no somatório da carga horária.  
-  ❌ E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento.  
-  
-Por favor, certifique-se de preencher todos os campos de rito obrigatório antes de submeter uma nova submissão. Em caso de dúvidas, a equipe técnica da Coordenadoria de Extensão estará à disposição.  
+O prazo para submissão dos ajustes e reenvio do relatório é de até 10 dias úteis a contar do recebimento desta notificação. O não cumprimento das correções poderá acarretar restrições para novos fomentos institucionais.  
   
 Atenciosamente,  
   

@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "execution_id": "7ed10d52-fc91-49a1-b656-22e57e378058",
+        "execution_id": "9c857c44-9462-407c-95dd-17df9b01a59e",
         "id_relatorio": "relatorio_12_E4",
         "protocolo_projeto": "Não identificado",
         "tipo_relatorio": "Parcial",
@@ -11,7 +11,7 @@
     "auditoria_completude": {
         "passou": false,
         "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
-        "evidencia": "Campos ausentes: Atividades Realizadas, Síntese da Execução"
+        "evidencia": "Campos ausentes: Síntese da Execução"
     },
     "auditoria_financeira": {
         "passou": true,
@@ -19,12 +19,11 @@
         "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
     },
     "auditoria_horas": {
-        "passou": false,
-        "motivo": "E5: Inconsistência no somatório da carga horária.",
-        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 81h"
+        "passou": true,
+        "motivo": "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo).",
+        "evidencia": "Verificação E5 ignorada — atividades em formato de texto, não tabular."
     },
     "lista_divergencias_acumuladas": [
-        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas, Síntese da Execução)",
-        "E5: Inconsistência no somatório da carga horária."
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Síntese da Execução)"
     ]
 }

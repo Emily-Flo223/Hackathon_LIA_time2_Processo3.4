@@ -4,16 +4,11 @@ Prezado(a) Coordenador(a) Diana Correia,
   
 Informamos que o Relatório Parcial de Ação de Extensão associado à submissão de protocolo Não identificado (<b>Consultoria Tributária Gratuita para MEIs</b>) passou pelo rito de auditoria digital e cruzamento automatizado de dados da PROECE.  
   
-A decisão final emitida pela comissão de fiscalização automatizada foi: <span style='color: red; font-weight: bold;'>DEVOLVER PARA REELABORAÇÃO</span>.  
+A decisão final emitida pela comissão de fiscalização automatizada foi: <span style='color: green; font-weight: bold;'>APROVAR</span>.  
   
-Constatamos inconformidades estruturais graves no documento enviado, tais como a ausência completa de seções textuais obrigatórias descritas nas resoluções normativas e no edital regulador. Devido à gravidade técnica, o relatório foi rejeitado em sua totalidade.  
+Parabéns! O seu relatório foi considerado totalmente consistente e em estrita conformidade com as exigências regulamentares vigentes na UFMS. A prestação de contas financeira e as atribuições de carga horária dos discentes foram deferidas com sucesso e o processo seguirá para arquivamento definitivo.  
   
-Será necessário realizar a REELABORAÇÃO completa do documento e proceder com um novo envio após sanar as seguintes omissões detectadas:  
-  
-  ❌ E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)  
-  ❌ E5: Inconsistência no somatório da carga horária.  
-  
-Por favor, certifique-se de preencher todos os campos de rito obrigatório antes de submeter uma nova submissão. Em caso de dúvidas, a equipe técnica da Coordenadoria de Extensão estará à disposição.  
+Agradecemos imensamente o seu empenho e contribuição contínua com as ações de extensão da nossa universidade.  
   
 Atenciosamente,  
   

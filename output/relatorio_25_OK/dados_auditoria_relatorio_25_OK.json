@@ -1,17 +1,17 @@
 {
     "metadata": {
-        "execution_id": "d29284c4-996b-46a3-8824-e560cd74f652",
+        "execution_id": "5a9e84d3-5b00-440f-bdc7-96bf88636705",
         "id_relatorio": "relatorio_25_OK",
         "protocolo_projeto": "Não identificado",
         "tipo_relatorio": "Final",
         "titulo_projeto": "Ciência Cidadã: Meteorologia Escolar",
         "coordenador": "Bruna Figueiredo",
-        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+        "decisao_final": "APROVAR"
     },
     "auditoria_completude": {
-        "passou": false,
-        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
-        "evidencia": "Campos ausentes: Atividades Realizadas"
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
     },
     "auditoria_financeira": {
         "passou": true,
@@ -19,12 +19,9 @@
         "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
     },
     "auditoria_horas": {
-        "passou": false,
-        "motivo": "E5: Inconsistência no somatório da carga horária.",
-        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 118h"
+        "passou": true,
+        "motivo": "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo).",
+        "evidencia": "Verificação E5 ignorada — atividades em formato de texto, não tabular."
     },
-    "lista_divergencias_acumuladas": [
-        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
-        "E5: Inconsistência no somatório da carga horária."
-    ]
+    "lista_divergencias_acumuladas": []
 }

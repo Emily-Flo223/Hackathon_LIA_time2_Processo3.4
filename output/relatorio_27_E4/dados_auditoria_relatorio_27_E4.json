@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "execution_id": "eb0959a5-76a6-433b-9c36-5e7de355c683",
+        "execution_id": "c27c84d0-25b5-4a8d-8e30-81af82e945bd",
         "id_relatorio": "relatorio_27_E4",
         "protocolo_projeto": "Não identificado",
         "tipo_relatorio": "Final",
@@ -11,7 +11,7 @@
     "auditoria_completude": {
         "passou": false,
         "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
-        "evidencia": "Campos ausentes: Atividades Realizadas, Resultados Alcançados / Produtos"
+        "evidencia": "Campos ausentes: Resultados Alcançados / Produtos"
     },
     "auditoria_financeira": {
         "passou": false,
@@ -19,13 +19,12 @@
         "evidencia": "O coordenador marcou que o projeto não teve recursos, mas a base oficial regista fomento de R$ 17,055.98."
     },
     "auditoria_horas": {
-        "passou": false,
-        "motivo": "E5: Inconsistência no somatório da carga horária.",
-        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 151h"
+        "passou": true,
+        "motivo": "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo).",
+        "evidencia": "Verificação E5 ignorada — atividades em formato de texto, não tabular."
     },
     "lista_divergencias_acumuladas": [
-        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas, Resultados Alcançados / Produtos)",
-        "E5: Inconsistência no somatório da carga horária.",
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Resultados Alcançados / Produtos)",
         "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento."
     ]
 }

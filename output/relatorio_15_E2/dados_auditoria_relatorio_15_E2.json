@@ -1,29 +1,27 @@
 {
     "metadata": {
-        "execution_id": "2625cad1-29da-40e8-8849-23d4340ba845",
+        "execution_id": "841551c6-a85d-4e88-a3ab-17effc8527a1",
         "id_relatorio": "relatorio_15_E2",
-        "protocolo_projeto": "FACOM.456331",
-        "tipo_relatorio": "Parcial",
-        "titulo_projeto": "Inclusão Digital para Idosos – CampuSênior",
-        "coordenador": "Nicolas Barbosa",
-        "decisao_final": "DEVOLVER PARA AJUSTES"
+        "protocolo_projeto": "relatorio_15_E2",
+        "tipo_relatorio": "Não identificado",
+        "titulo_projeto": "",
+        "coordenador": "",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
     },
     "auditoria_completude": {
         "passou": true,
-        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
-        "evidencia": "Relatório 100% completo."
+        "motivo": "",
+        "evidencia": ""
     },
     "auditoria_financeira": {
         "passou": true,
-        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
-        "evidencia": "Declarado: R$ 18,964.55 | Oficial: R$ 19,042.29"
+        "motivo": "",
+        "evidencia": ""
     },
     "auditoria_horas": {
         "passou": true,
-        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
-        "evidencia": "Soma das atividades: 99h | Total declarado: 99h"
+        "motivo": "",
+        "evidencia": ""
     },
-    "lista_divergencias_acumuladas": [
-        "E2: Bolsista 'César Monteiro' declarado não consta no Edital Oficial para o projeto submetido."
-    ]
+    "lista_divergencias_acumuladas": []
 }

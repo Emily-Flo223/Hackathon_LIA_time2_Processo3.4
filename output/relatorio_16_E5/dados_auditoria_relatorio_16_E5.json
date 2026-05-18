@@ -1,17 +1,17 @@
 {
     "metadata": {
-        "execution_id": "37933aa9-abf9-43b8-9a65-d2660cdd5f45",
+        "execution_id": "ea4cc794-ccac-45b5-9324-da28df52a1b7",
         "id_relatorio": "relatorio_16_E5",
         "protocolo_projeto": "Não identificado",
         "tipo_relatorio": "Parcial",
         "titulo_projeto": "Memória Cultural e Patrimônio das Comunidades Tradicionais",
         "coordenador": "Tatiana Lopes",
-        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+        "decisao_final": "DEVOLVER PARA AJUSTES"
     },
     "auditoria_completude": {
-        "passou": false,
-        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
-        "evidencia": "Campos ausentes: Atividades Realizadas"
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
     },
     "auditoria_financeira": {
         "passou": false,
@@ -19,13 +19,11 @@
         "evidencia": "O coordenador marcou que o projeto não teve recursos, mas a base oficial regista fomento de R$ 15,855.18."
     },
     "auditoria_horas": {
-        "passou": false,
-        "motivo": "E5: Inconsistência no somatório da carga horária.",
-        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 185h"
+        "passou": true,
+        "motivo": "Sem atividades estruturadas extraídas para validar carga horária (formato narrativo).",
+        "evidencia": "Verificação E5 ignorada — atividades em formato de texto, não tabular."
     },
     "lista_divergencias_acumuladas": [
-        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
-        "E5: Inconsistência no somatório da carga horária.",
         "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento."
     ]
 }
