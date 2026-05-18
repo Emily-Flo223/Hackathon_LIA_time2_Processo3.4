@@ -5,7 +5,8 @@ Usa dataclasses da stdlib (equivalente ao TypedDict do LangGraph).
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any, Optional, Annotated  # <-- Adicionado Annotated
+import operator                              # <-- Adicionado operator
 
 
 # ── sub-estruturas extraídas do relatório ──────────────────────────────────────
@@ -92,17 +93,17 @@ class AgenteState:
 
     # --- Resultados das verificações paralelas (Nós 4-6) ---
     check_financeiro: Optional[CheckResult] = None
-    check_bolsistas: list[CheckResult] = field(default_factory=list)
+    check_bolsistas: Annotated[list[CheckResult], operator.add] = field(default_factory=list) # <-- Atualizado
     check_completude: Optional[CheckResult] = None
     check_horas: Optional[CheckResult] = None
 
     # --- Nó 7: compose_parecer ---
     decisao: str = ""               # APROVAR | DEVOLVER PARA AJUSTES | DEVOLVER PARA REELABORAÇÃO
-    divergencias: list[str] = field(default_factory=list)
+    divergencias: Annotated[list[str], operator.add] = field(default_factory=list) # <-- Atualizado
     parecer_md: str = ""
     parecer_json: Optional[dict] = None
     email_txt: str = ""
 
     # --- Metadados de execução ---
     execution_id: str = ""
-    log: list[str] = field(default_factory=list)
+    log: Annotated[list[str], operator.add] = field(default_factory=list) # <-- Atualizado

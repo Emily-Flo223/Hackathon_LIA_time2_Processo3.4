@@ -1,0 +1,31 @@
+{
+    "metadata": {
+        "execution_id": "37933aa9-abf9-43b8-9a65-d2660cdd5f45",
+        "id_relatorio": "relatorio_16_E5",
+        "protocolo_projeto": "Não identificado",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Memória Cultural e Patrimônio das Comunidades Tradicionais",
+        "coordenador": "Tatiana Lopes",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Atividades Realizadas"
+    },
+    "auditoria_financeira": {
+        "passou": false,
+        "motivo": "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento.",
+        "evidencia": "O coordenador marcou que o projeto não teve recursos, mas a base oficial regista fomento de R$ 15,855.18."
+    },
+    "auditoria_horas": {
+        "passou": false,
+        "motivo": "E5: Inconsistência no somatório da carga horária.",
+        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 185h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
+        "E5: Inconsistência no somatório da carga horária.",
+        "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento."
+    ]
+}

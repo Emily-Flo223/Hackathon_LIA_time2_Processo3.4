@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "execution_id": "c2502777-41c9-48aa-952a-8f4cee6a2aa5",
+        "id_relatorio": "relatorio_07_OK",
+        "protocolo_projeto": "INQUI.720644",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Capacitação em Inteligência Artificial para Educação Básica",
+        "coordenador": "Zuleica Nunes",
+        "decisao_final": "APROVAR"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
+        "evidencia": "Declarado: R$ 6,169.10 | Oficial: R$ 6,179.77"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 86h | Total declarado: 86h"
+    },
+    "lista_divergencias_acumuladas": []
+}

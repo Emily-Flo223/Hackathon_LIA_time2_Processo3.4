@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "execution_id": "725eb931-9045-4ad7-8914-b05142b989e0",
+        "id_relatorio": "relatorio_20_OK",
+        "protocolo_projeto": "Não identificado",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Apoio Psicossocial às Comunidades Indígenas de MS",
+        "coordenador": "Quirino Teixeira",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Atividades Realizadas"
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Projeto sem recursos financeiros, alinhado com a base oficial.",
+        "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
+    },
+    "auditoria_horas": {
+        "passou": false,
+        "motivo": "E5: Inconsistência no somatório da carga horária.",
+        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 129h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
+        "E5: Inconsistência no somatório da carga horária."
+    ]
+}

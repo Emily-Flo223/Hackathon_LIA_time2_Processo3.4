@@ -4,15 +4,14 @@ nodes/extract_structured.py — Nó 2 do agente PROECE 3.4
 Responsabilidade:
   - Lê os prompts de sistema e utilizador a partir da pasta /prompts.
   - Recebe o texto bruto (state.raw_text) extraído no nó 1.
-  - Utiliza o LLM via OpenRouter com Structured Output (Pydantic) para extrair os dados.
+  - Utiliza o LLM via OpenRouter para o corpo do texto e Regex Implacável para o Cabeçalho.
 """
 
 import sys
+import re
 from pathlib import Path
 
 # --- INÍCIO DO AJUSTE DE IMPORTAÇÃO ---
-# Isto garante que o Python encontre o llm.py e state.py na pasta raiz 
-# quando corremos este ficheiro isoladamente para testes.
 ROOT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 # --- FIM DO AJUSTE ---
@@ -21,8 +20,8 @@ import logging
 from typing import List
 from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_community.callbacks import get_openai_callback
 
-# Importa a função que criámos no llm.py (na raiz do projeto)
 from llm import get_openrouter_llm
 
 from state import (
@@ -33,13 +32,14 @@ from state import (
     Secoes,
 )
 
+from utils.logger import get_structured_logger
+json_logger = get_structured_logger(__name__)
+
 logger = logging.getLogger(__name__)
 
-# ── Caminho para a pasta de prompts ──
 PROMPTS_DIR = ROOT_DIR / "prompts"
 
 def _load_prompt(filename: str) -> str:
-    """Função auxiliar para ler o conteúdo de um ficheiro de prompt."""
     caminho = PROMPTS_DIR / filename
     if not caminho.exists():
         raise FileNotFoundError(f"Ficheiro de prompt não encontrado: {caminho}")
@@ -48,57 +48,55 @@ def _load_prompt(filename: str) -> str:
 
 
 # ══════════════════════════════════════════════════════════════════════════
-# SCHEMAS PYDANTIC (Instruções para o LLM)
+# SCHEMAS PYDANTIC (Tolerantes a Falhas)
 # ══════════════════════════════════════════════════════════════════════════
 
 class CategoriaRecursoModel(BaseModel):
-    nome: str = Field(description="Nome da categoria do recurso (ex: capital, custeio, bolsa).")
-    valor: float = Field(description="Valor financeiro em reais (R$) atribuído a esta categoria.")
+    nome: str = Field(default="Categoria não informada")
+    valor: float = Field(default=0.0)
 
 class RecursoModel(BaseModel):
-    projeto_teve_recursos: bool = Field(description="True se o projeto declarou ter recebido recursos, False caso contrário.")
-    valor_total_declarado: float = Field(description="O valor total declarado em reais (R$). Se não houver, extraia 0.0.")
-    categorias: List[CategoriaRecursoModel] = Field(description="Lista de valores detalhados por categoria. Vazio se não houver.", default_factory=list)
+    projeto_teve_recursos: bool = Field(default=False)
+    valor_total_declarado: float = Field(default=0.0)
+    categorias: List[CategoriaRecursoModel] = Field(default_factory=list)
 
 class BolsistaModel(BaseModel):
-    nome: str = Field(description="Nome completo do bolsista ou voluntário")
-    cpf: str = Field(description="CPF do bolsista")
-    tipo_vinculo: str = Field(description="Tipo de vínculo (ex: PIBEXT, PIVEXT)")
-    periodo_declarado_inicio: str = Field(description="Data de início do período declarado")
-    periodo_declarado_fim: str = Field(description="Data de fim do período declarado")
-    observacao: str = Field(description="Observação ou aviso sobre o bolsista. Vazio se não houver.")
+    nome: str = Field(default="Não identificado")
+    cpf: str = Field(default="Não identificado")
+    tipo_vinculo: str = Field(default="Não identificado")
+    periodo_declarado_inicio: str = Field(default="Não identificado")
+    periodo_declarado_fim: str = Field(default="Não identificado")
+    observacao: str = Field(default="")
 
 class AtividadeModel(BaseModel):
-    descricao: str = Field(description="Descrição da atividade realizada")
-    data_realizacao: str = Field(description="Data ou período em que a atividade ocorreu")
-    local: str = Field(description="Local onde a atividade ocorreu")
-    carga_horaria_h: int = Field(description="Carga horária em horas gastas na atividade")
+    descricao: str = Field(default="Sem descrição")
+    data_realizacao: str = Field(default="Não informada")
+    local: str = Field(default="Não informado")
+    carga_horaria_h: int = Field(default=0)
 
 class SecoesModel(BaseModel):
-    objetivo: str = Field(description="Texto da secção 'Objetivo do Projeto'. Vazio se ausente.")
-    prestacao_contas: str = Field(description="Texto da secção 'Prestação de Contas'. Vazio se ausente.")
-    sintese_execucao: str = Field(description="Texto da secção 'Síntese da Execução'. Vazio se ausente.")
-    resultados_alcancados: str = Field(description="Texto da secção 'Resultados Alcançados'. Vazio se ausente.")
-    metodologia: str = Field(description="Texto da secção 'Metodologia Utilizada'. Vazio se ausente.")
-    dificuldades_encontradas: str = Field(description="Texto da secção 'Dificuldades Encontradas'. Vazio se ausente.")
-    consideracoes_finais: str = Field(description="Texto da secção 'Considerações Finais'. Vazio se ausente.")
+    objetivo: str = Field(default="")
+    prestacao_contas: str = Field(default="")
+    sintese_execucao: str = Field(default="")
+    resultados_alcancados: str = Field(default="")
+    metodologia: str = Field(default="")
+    dificuldades_encontradas: str = Field(default="")
+    consideracoes_finais: str = Field(default="")
 
 class ReportData(BaseModel):
-    """Esquema principal de extração de dados do relatório de extensão."""
-    id_relatorio: str = Field(description="Número de identificação único do relatório")
-    protocolo_projeto: str = Field(description="Número do protocolo do projeto")
-    titulo_projeto: str = Field(description="Título da submissão/projeto")
-    data_inicio_projeto: str = Field(description="Data de início do projeto")
-    data_fim_projeto: str = Field(description="Data de encerramento prevista ou final do projeto")
-    tipo_relatorio: str = Field(description="Tipo do relatório (ex: Parcial, Final)")
-    coordenador: str = Field(description="Nome do coordenador do projeto")
-    data_envio: str = Field(description="Data de envio do relatório")
-    total_horas_declarado: int = Field(description="Total de horas declaradas no cabeçalho ou resumo")
-    
-    recursos: RecursoModel
-    bolsistas: List[BolsistaModel]
-    atividades: List[AtividadeModel]
-    secoes: SecoesModel
+    id_relatorio: str = Field(default="Não identificado")
+    protocolo_projeto: str = Field(default="Não identificado")
+    titulo_projeto: str = Field(default="Não identificado")
+    data_inicio_projeto: str = Field(default="Não identificado")
+    data_fim_projeto: str = Field(default="Não identificado")
+    tipo_relatorio: str = Field(default="Não identificado")
+    coordenador: str = Field(default="Não identificado")
+    data_envio: str = Field(default="Não identificado")
+    total_horas_declarado: int = Field(default=0)
+    recursos: RecursoModel = Field(default_factory=RecursoModel)
+    bolsistas: List[BolsistaModel] = Field(default_factory=list)
+    atividades: List[AtividadeModel] = Field(default_factory=list)
+    secoes: SecoesModel = Field(default_factory=SecoesModel)
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -106,12 +104,6 @@ class ReportData(BaseModel):
 # ══════════════════════════════════════════════════════════════════════════
 
 def extract_structured(state: AgenteState) -> AgenteState:
-    """
-    Nó 2 — extract_structured
-    
-    Carrega os prompts dos ficheiros, utiliza o OpenRouter para ler state.raw_text
-    e extrair os dados estruturados de acordo com o schema ReportData.
-    """
     if not state.ingest_ok:
         state.log.append("[extract_structured] Ignorado pois ingest_ok=False")
         return state
@@ -119,29 +111,67 @@ def extract_structured(state: AgenteState) -> AgenteState:
     state.log.append("[extract_structured] A iniciar extração com LLM via OpenRouter...")
 
     try:
-        # 1. Carrega os prompts dos ficheiros .txt
-        system_prompt = _load_prompt("extract_system.txt")
-        user_prompt_template = _load_prompt("extract_user.txt")
+        system_prompt = _load_prompt("extract_system_v1.0.txt")
+        user_prompt_template = _load_prompt("extract_user_v1.0.txt")
 
-        # 2. Inicializa o modelo OpenRouter
-        # Pode alterar "openai/gpt-4o-mini" para outro modelo compatível com tool calling (ex: anthropic/claude-3-haiku)
         llm = get_openrouter_llm(model="openai/gpt-4o-mini", temperature=0.0)
-        
-        # 3. Amarra o Schema Pydantic ao modelo
         structured_llm = llm.with_structured_output(ReportData)
 
-        # 4. Prepara o prompt do LangChain
         prompt = ChatPromptTemplate.from_messages([
             ("system", system_prompt),
             ("user", user_prompt_template)
         ])
-
         chain = prompt | structured_llm
 
-        # 5. Invoca o modelo passando o texto bruto extraído no nó anterior
-        dados_extraidos: ReportData = chain.invoke({"texto_bruto": state.raw_text})
+        with get_openai_callback() as cb:
+            dados_extraidos: ReportData = chain.invoke({"texto_bruto": state.raw_text})
+            
+            # ── TEXTO NORMALIZADO PARA EVITAR QUEBRAS DE TABELA ──
+            # Remove espaços, quebras de linha, tabs, vírgulas, pontos e traços
+            texto_colado = re.sub(r"[\s,.:\-_/\r\n\t]", "", state.raw_text)
 
-        # ── Popula o AgenteState com os dados extraídos ──
+            # ── 1. CAÇADOR UNIVERSAL E IMPLACÁVEL DE PROTOCOLO ──
+            # O .*? antes da sigla permite capturar a sigla mesmo se estiver grudada em "Protocolo" (ex: ProtocoloFAENG479201)
+            padrao_strict = r".*?(INQUI|FACOM|CCHS|CCBS|FAALC|CPAQ|FAENG|CPAN|CPTL|CPNA|FADIR|FAMED|FAODO|INBIO|INMA|INFI|ESAN|FAMEZ|SIGPROJ)(\d{4,10})"
+            match_strict = re.search(padrao_strict, texto_colado, re.IGNORECASE)
+            
+            if match_strict:
+                sigla_limpa = match_strict.group(1).upper()
+                numero_limpo = match_strict.group(2)
+                dados_extraidos.protocolo_projeto = f"{sigla_limpa}.{numero_limpo}"
+                state.log.append(f"[extract_structured] Protocolo extraído com sucesso: {dados_extraidos.protocolo_projeto}")
+            else:
+                dados_extraidos.protocolo_projeto = "Não identificado"
+                state.log.append("[extract_structured] Aviso: Nenhum protocolo com sigla oficial foi detetado.")
+
+            # ── 2. CAÇADOR DO ID DO RELATÓRIO (NÚMERO DO RELATÓRIO) ──
+            # Procura a expressão "NumerodoRelatorio" colada aos números na string purificada
+            match_id_strict = re.search(r"NumerodoRelatorio(\d+)", texto_colado, re.IGNORECASE)
+            
+            if match_id_strict:
+                dados_extraidos.id_relatorio = match_id_strict.group(1).strip()
+                state.log.append(f"[extract_structured] ID do Relatório extraído com sucesso: {dados_extraidos.id_relatorio}")
+            else:
+                # Se não encontrar o número interno, assume o nome limpo do arquivo físico
+                dados_extraidos.id_relatorio = Path(state.arquivo_path).stem if state.arquivo_path else "Não identificado"
+
+            # ── 3. CAÇADOR DO TIPO E TÍTULO ──
+            texto_linhas = state.raw_text
+            match_tipo = re.search(r"(?i)Tipo de Relatorio[^\w]*?([A-Za-zÀ-ÿ]+)", texto_linhas)
+            if match_tipo:
+                dados_extraidos.tipo_relatorio = match_tipo.group(1).strip()
+
+            match_titulo = re.search(r"(?i)Titulo da Submissao[^\w]*?([^\n\r]+)", texto_linhas)
+            if match_titulo:
+                dados_extraidos.titulo_projeto = match_titulo.group(1).replace('\r', '').strip()
+            
+            nome_arquivo = Path(state.arquivo_path).name if state.arquivo_path else "desconhecido"
+            json_logger.info(
+                "Extração concluída", 
+                extra={"arquivo": nome_arquivo, "tokens_usados": cb.total_tokens}
+            )
+
+        # ── Popula o AgenteState ──
         state.id_relatorio = dados_extraidos.id_relatorio
         state.protocolo_projeto = dados_extraidos.protocolo_projeto
         state.titulo_projeto = dados_extraidos.titulo_projeto
@@ -158,23 +188,9 @@ def extract_structured(state: AgenteState) -> AgenteState:
             categorias=[{"nome": c.nome, "valor": c.valor} for c in dados_extraidos.recursos.categorias]
         )
 
-        state.bolsistas = [
-            Bolsista(
-                nome=b.nome, cpf=b.cpf, tipo_vinculo=b.tipo_vinculo,
-                periodo_declarado_inicio=b.periodo_declarado_inicio,
-                periodo_declarado_fim=b.periodo_declarado_fim,
-                observacao=b.observacao
-            ) for b in dados_extraidos.bolsistas
-        ]
-
-        state.atividades = [
-            Atividade(
-                descricao=a.descricao, data_realizacao=a.data_realizacao,
-                local=a.local, participantes_externos=0, 
-                carga_horaria_h=a.carga_horaria_h
-            ) for a in dados_extraidos.atividades
-        ]
-
+        state.bolsistas = [Bolsista(nome=b.nome, cpf=b.cpf, tipo_vinculo=b.tipo_vinculo, periodo_declarado_inicio=b.periodo_declarado_inicio, periodo_declarado_fim=b.periodo_declarado_fim, observacao=b.observacao) for b in dados_extraidos.bolsistas]
+        state.atividades = [Atividade(descricao=a.descricao, data_realizacao=a.data_realizacao, local=a.local, participantes_externos=0, carga_horaria_h=a.carga_horaria_h) for a in dados_extraidos.atividades]
+        
         state.secoes = Secoes(
             objetivo=dados_extraidos.secoes.objetivo,
             prestacao_contas=dados_extraidos.secoes.prestacao_contas,
@@ -183,8 +199,7 @@ def extract_structured(state: AgenteState) -> AgenteState:
             metodologia=dados_extraidos.secoes.metodologia,
             dificuldades_encontradas=dados_extraidos.secoes.dificuldades_encontradas,
             consideracoes_finais=dados_extraidos.secoes.consideracoes_finais,
-            referencias_bibliograficas=[],
-            objetivos_desenvolvimento_sustentavel=[]
+            referencias_bibliograficas=[], objetivos_desenvolvimento_sustentavel=[]
         )
 
         state.log.append(f"[extract_structured] OK — Dados extraídos com sucesso. Projeto: {state.titulo_projeto}")

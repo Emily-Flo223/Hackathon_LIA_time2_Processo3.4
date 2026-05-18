@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "execution_id": "215b7096-cd04-4723-b027-cb88de47829a",
+        "id_relatorio": "relatorio_26_OK",
+        "protocolo_projeto": "FACOM.722795",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Letramento Digital para Comunidades Rurais do MS",
+        "coordenador": "Mariana Campos",
+        "decisao_final": "APROVAR"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
+        "evidencia": "Declarado: R$ 6,966.15 | Oficial: R$ 6,997.19"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 121h | Total declarado: 121h"
+    },
+    "lista_divergencias_acumuladas": []
+}

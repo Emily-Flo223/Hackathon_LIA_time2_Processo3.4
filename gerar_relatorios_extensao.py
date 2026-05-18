@@ -111,7 +111,7 @@ LINHAS = [
 
 ODS_LISTA = [
     "ODS 4 – Educação de qualidade",
-    "ODS 5 – Igualdade de gênero",
+    "ODS 5 – Equality of gênero",
     "ODS 10 – Reducao das desigualdades",
     "ODS 3 – Saúde e bem-estar",
     "ODS 8 – Trabalho decente",
@@ -286,7 +286,7 @@ def gerar_dados(rng, idx, tipo_erro):
 
     secoes = {
         "sintese": (
-            f"Durante o periodo de referencia, o projeto {titulo} executou "
+            f"During o periodo de referencia, o projeto {titulo} executou "
             f"{n_atv} atividades, impactando aproximadamente "
             f"{sum(a['part_ext'] for a in atividades)} participantes externos. "
             "As acoes foram desenvolvidas em parceria com escolas publicas e "
@@ -614,13 +614,15 @@ def gerar_csvs(lista_dados, lista_arquivos, out_dir):
     # 2. Geração da Base de Fomentos
     with open(out_dir / "fomentos_concedidos.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow(["protocolo_projeto", "valor_aprovado", "fonte", "modalidade_fomento", "data_aprovacao"])
+        # ALTERAÇÃO SOLICITADA: Adição estrita da coluna 'nome_relatorio'
+        writer.writerow(["protocolo_projeto", "valor_aprovado", "fonte", "modalidade_fomento", "data_aprovacao", "nome_relatorio"])
         
-        for d in lista_dados:
+        for d, arq in zip(lista_dados, lista_arquivos):
             if d["tem_recurso"]:
                 fonte = rng_csv.choice(["FUNDECT", "CAPES", "CNPq", "PROECE"])
                 modalidade = rng_csv.choice(["capital", "custeio", "bolsa"])
-                writer.writerow([d["protocolo"], f"{d['valor_concedido']:.2f}", fonte, modalidade, d["inicio_projeto"]])
+                # Escreve o nome do arquivo correspondente no final
+                writer.writerow([d["protocolo"], f"{d['valor_concedido']:.2f}", fonte, modalidade, d["inicio_projeto"], arq])
 
     # 3. Preparação da Base de Bolsistas Selecionados (Omitindo o arquivo CSV original e usando Edital)
     for d in lista_dados:

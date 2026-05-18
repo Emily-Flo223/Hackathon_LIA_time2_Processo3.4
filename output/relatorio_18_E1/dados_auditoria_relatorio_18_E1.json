@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "execution_id": "62bb2d49-006c-4ed1-9a0c-3893406d6501",
+        "id_relatorio": "relatorio_18_E1",
+        "protocolo_projeto": "CCHS.975679",
+        "tipo_relatorio": "Final",
+        "titulo_projeto": "Música, Inclusão e Desenvolvimento Social",
+        "coordenador": "Júlia Santos",
+        "decisao_final": "DEVOLVER PARA AJUSTES"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": false,
+        "motivo": "Erro E1: Valor declarado diverge do concedido em mais de 1% (Divergência: 18.10%).",
+        "evidencia": "Declarado: R$ 17,026.81 | Oficial: R$ 20,788.50"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 62h | Total declarado: 62h"
+    },
+    "lista_divergencias_acumuladas": [
+        "Erro E1: Valor declarado diverge do concedido em mais de 1% (Divergência: 18.10%)."
+    ]
+}

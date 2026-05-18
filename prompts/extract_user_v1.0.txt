@@ -1,0 +1,9 @@
+Abaixo está o texto bruto extraído do relatório de extensão. 
+Por favor, analise-o cuidadosamente e popule o esquema JSON solicitado, prestando atenção especial para não confundir o ID do SEI com a Sigla do Protocolo.
+
+TEXTO BRUTO DO RELATÓRIO:
+--------------------------------------------------
+{texto_bruto}
+--------------------------------------------------
+
+Gere a extração estruturada agora.

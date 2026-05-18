@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "execution_id": "4d82b87b-fa88-46af-8640-1af5ca29ea9d",
+        "id_relatorio": "relatorio_28_OK",
+        "protocolo_projeto": "FAENG.598598",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Laboratório Itinerante de Física Experimental",
+        "coordenador": "Wellington Ribeiro",
+        "decisao_final": "APROVAR"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
+        "evidencia": "Declarado: R$ 2,351.74 | Oficial: R$ 2,360.14"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 84h | Total declarado: 84h"
+    },
+    "lista_divergencias_acumuladas": []
+}

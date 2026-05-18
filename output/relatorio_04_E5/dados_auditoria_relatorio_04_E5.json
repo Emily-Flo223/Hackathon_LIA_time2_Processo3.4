@@ -1,0 +1,31 @@
+{
+    "metadata": {
+        "execution_id": "34c59713-a82f-49a6-86e0-b2e88e5aab6c",
+        "id_relatorio": "relatorio_04_E5",
+        "protocolo_projeto": "Não identificado",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Monitoramento Hídrico Participativo do Rio Paraguai",
+        "coordenador": "Kelly Oliveira",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Atividades Realizadas"
+    },
+    "auditoria_financeira": {
+        "passou": false,
+        "motivo": "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento.",
+        "evidencia": "O coordenador marcou que o projeto não teve recursos, mas a base oficial regista fomento de R$ 8,082.72."
+    },
+    "auditoria_horas": {
+        "passou": false,
+        "motivo": "E5: Inconsistência no somatório da carga horária.",
+        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 24h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
+        "E5: Inconsistência no somatório da carga horária.",
+        "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento."
+    ]
+}

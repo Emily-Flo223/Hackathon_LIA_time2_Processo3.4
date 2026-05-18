@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "execution_id": "d385b9db-bac2-49c2-a47f-ddac7cde7d4d",
+        "id_relatorio": "relatorio_02_E1",
+        "protocolo_projeto": "FAENG.216970",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Alfabetização Científica para Crianças do Ensino Fundamental",
+        "coordenador": "Samuel Vieira",
+        "decisao_final": "DEVOLVER PARA AJUSTES"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": false,
+        "motivo": "Erro E1: Valor declarado diverge do concedido em mais de 1% (Divergência: 17.63%).",
+        "evidencia": "Declarado: R$ 27,042.51 | Oficial: R$ 22,990.44"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 71h | Total declarado: 71h"
+    },
+    "lista_divergencias_acumuladas": [
+        "Erro na Prestação de Contas: o gasto total (R$ 27,042.51) excede o limite do fomento aprovado pela PROECE (R$ 22,990.44).",
+        "Erro E1: Valor declarado diverge do concedido em mais de 1% (Divergência: 17.63%)."
+    ]
+}

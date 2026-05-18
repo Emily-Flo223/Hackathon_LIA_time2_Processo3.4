@@ -26,6 +26,22 @@ from nodes.emit import emit_artifacts
 # Caminho para a pasta de dados gerados (onde estão os PDFs, DOCXs e os CSVs)
 DATA_DIR = ROOT_DIR / "data"
 
+def apply_update(state, update_data):
+    """
+    Função auxiliar: Se o nó retornar um dicionário (padrão LangGraph), 
+    ele injeta os dados de volta no objeto AgenteState.
+    Se o nó retornar o próprio AgenteState, ele apenas o devolve.
+    """
+    if isinstance(update_data, dict):
+        for key, value in update_data.items():
+            # Listas como logs e divergencias devem ser concatenadas
+            if key in ["divergencias", "log"]:
+                getattr(state, key).extend(value)
+            else:
+                setattr(state, key, value)
+        return state
+    return update_data
+
 def testar_pipeline(quantidade_ficheiros=1):
     """
     Lê relatórios e passa-os pelos nós de ingestão, extração e carregamento de bases.
@@ -50,7 +66,7 @@ def testar_pipeline(quantidade_ficheiros=1):
 
         # ── 1. NÓ DE INGESTÃO (Ler o ficheiro físico) ──
         print("\n▶ [NÓ 1] A executar ingest_report...")
-        state = ingest_report(state)
+        state = apply_update(state, ingest_report(state))
         
         if not state.ingest_ok:
             print(f"❌ Falha na ingestão: {state.ingest_erro}")
@@ -60,7 +76,7 @@ def testar_pipeline(quantidade_ficheiros=1):
 
         # ── 2. NÓ DE EXTRAÇÃO (LLM via OpenRouter) ──
         print("\n▶ [NÓ 2] A executar extract_structured (aguarde o LLM)...")
-        state = extract_structured(state)
+        state = apply_update(state, extract_structured(state))
         
         if not state.ingest_ok:
             print(f"❌ Falha na extração LLM: {state.ingest_erro}")
@@ -71,12 +87,12 @@ def testar_pipeline(quantidade_ficheiros=1):
         # ── 3. NÓ DE BASES INTERNAS (Carregar CSVs da PROECE) ──
         print("\n▶ [NÓ 3] A executar load_internal_bases...")
         # Passamos o DATA_DIR explicitamente para ele encontrar os CSVs na mesma pasta
-        state = load_internal_bases(state, data_dir=DATA_DIR)
+        state = apply_update(state, load_internal_bases(state, data_dir=DATA_DIR))
         print("✔ Sucesso! Bases oficiais carregadas na memória.")
 
         # ── 4. NÓ DE AUDITORIA FINANCEIRA (Novo!) ──
         print("\n▶ [NÓ 4] A executar check_financial_consistency...")
-        state = check_financial_consistency(state)
+        state = apply_update(state, check_financial_consistency(state))
         print("✔ Sucesso! Auditoria financeira concluída.")
 
         # ── 5. VISUALIZAR O ESTADO ACUMULADO ──
@@ -124,7 +140,7 @@ def testar_pipeline(quantidade_ficheiros=1):
 
         # ── 5. NÓ DE AUDITORIA DE BOLSISTAS ──
         print("\n▶ [NÓ 5] A executar check_bolsistas_consistency...")
-        state = check_bolsistas_consistency(state)
+        state = apply_update(state, check_bolsistas_consistency(state))
         print("✔ Sucesso! Auditoria de bolsistas concluída.")
 
         # <-- NOVO BLOCO ADICIONADO PARA VERIFICAR OS BOLSISTAS -->
@@ -141,7 +157,7 @@ def testar_pipeline(quantidade_ficheiros=1):
 
         # ── 6. NÓ DE COMPLETUDE E HORAS ──
         print("\n▶ [NÓ 6] A executar check_completeness_and_hours...")
-        state = check_completeness_and_hours(state)
+        state = apply_update(state, check_completeness_and_hours(state))
         
         print("\n✅ RESULTADO DA AUDITORIA DE ESTRUTURA E HORAS:")
         
@@ -170,7 +186,7 @@ def testar_pipeline(quantidade_ficheiros=1):
 
         # ── 7. NÓ FINAL: COMPOR PARECER E E-MAIL ──
         print("\n▶ [NÓ 7] A executar compose_parecer...")
-        state = compose_parecer(state)
+        state = apply_update(state, compose_parecer(state))
         print("✔ Sucesso! Ciclo completo de parecer e e-mail concluído.")
 
         print(f"\n{'-'*30} DOCUMENTAÇÃO GERADA PELO AGENTE {'-'*30}")
@@ -185,7 +201,7 @@ def testar_pipeline(quantidade_ficheiros=1):
         print("\n▶ [NÓ 8] A executar emit_artifacts...")
         # Definimos explicitamente o DATA_DIR / "output" para organizar os ficheiros na pasta correta
         OUTPUT_DIR = ROOT_DIR / "output"
-        state = emit_artifacts(state, output_base_dir=OUTPUT_DIR)
+        state = apply_update(state, emit_artifacts(state, output_base_dir=OUTPUT_DIR))
         
         print(f"\n✅ PIPELINE CONCLUÍDA COM SUCESSO!")
         print(f"   Os ficheiros oficiais de auditoria para o projeto '{state.protocolo_projeto}'")
@@ -198,8 +214,6 @@ def testar_pipeline(quantidade_ficheiros=1):
             
     print(f"\n{'='*70}\nFim do teste para {len(ficheiros_selecionados)} ficheiro(s).\n")
 
-    
-
 if __name__ == "__main__":
-    # Testar com 1 ficheiro (pode aumentar se quiser testar o lote)
+    # Testar com 4 ficheiros 
     testar_pipeline(quantidade_ficheiros=4)

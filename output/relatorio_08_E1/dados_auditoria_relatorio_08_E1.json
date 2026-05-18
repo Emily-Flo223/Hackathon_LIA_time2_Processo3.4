@@ -1,0 +1,31 @@
+{
+    "metadata": {
+        "execution_id": "91fb7588-2120-476a-8479-8d7d457456a4",
+        "id_relatorio": "relatorio_08_E1",
+        "protocolo_projeto": "Não identificado",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Capacitação em Primeiros Socorros para Comunidades Rurais",
+        "coordenador": "Zoraide Nunes",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Atividades Realizadas"
+    },
+    "auditoria_financeira": {
+        "passou": false,
+        "motivo": "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento.",
+        "evidencia": "O coordenador marcou que o projeto não teve recursos, mas a base oficial regista fomento de R$ 15,106.54."
+    },
+    "auditoria_horas": {
+        "passou": false,
+        "motivo": "E5: Inconsistência no somatório da carga horária.",
+        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 140h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
+        "E5: Inconsistência no somatório da carga horária.",
+        "E1: Relatório omitiu recursos, mas a base oficial indica que houve fomento."
+    ]
+}

@@ -13,19 +13,18 @@ from state import AgenteState, CheckResult
 
 logger = logging.getLogger(__name__)
 
-def check_bolsistas_consistency(state: AgenteState) -> AgenteState:
+def check_bolsistas_consistency(state: AgenteState) -> dict: # <-- Alterado para devolver dict
     if not state.ingest_ok:
-        return state
+        return {}
 
-    state.log.append("[check_bolsistas] A iniciar verificação de bolsistas...")
-
-    # Garante que a lista CheckResult está limpa/instanciada
-    if not hasattr(state, "check_bolsistas") or state.check_bolsistas is None:
-        state.check_bolsistas = []
+    # Criamos listas LOCAIS para não causar conflitos de memória no LangGraph
+    novos_logs = ["[check_bolsistas] A iniciar verificação de bolsistas..."]
+    novas_divergencias = []
+    novos_checks = []
 
     if not state.bolsistas:
-        state.log.append("[check_bolsistas] OK — Projeto sem bolsistas.")
-        return state
+        novos_logs.append("[check_bolsistas] OK — Projeto sem bolsistas.")
+        return {"log": novos_logs}
 
     titulo_projeto_declarado = state.titulo_projeto.strip().lower()
 
@@ -48,9 +47,9 @@ def check_bolsistas_consistency(state: AgenteState) -> AgenteState:
             motivo = f"E2: Bolsista '{nome_declarado}' declarado não consta no Edital Oficial para o projeto submetido."
             evidencia = f"Declarado no relatório: {nome_declarado} (Projeto: {state.titulo_projeto}) | Oficial no Edital: Não localizado"
             
-            state.check_bolsistas.append(CheckResult(passou=False, motivo=motivo, evidencia=evidencia))
-            state.divergencias.append(motivo)
-            state.log.append(f"[check_bolsistas] FALHOU — {motivo}")
+            novos_checks.append(CheckResult(passou=False, motivo=motivo, evidencia=evidencia))
+            novas_divergencias.append(motivo)
+            novos_logs.append(f"[check_bolsistas] FALHOU — {motivo}")
             continue
 
         # ── CENÁRIO B: Bolsista CONSTA no Edital (Verificar Vigência - Erro E3) ──
@@ -68,14 +67,19 @@ def check_bolsistas_consistency(state: AgenteState) -> AgenteState:
             motivo = f"E3: O período de vigência declarado para '{nome_declarado}' difere do vínculo formal no Edital."
             evidencia = f"Período Declarado: {declarado_inicio} a {declarado_fim} | Vigência Oficial: {vigencia_oficial}"
             
-            state.check_bolsistas.append(CheckResult(passou=False, motivo=motivo, evidencia=evidencia))
-            state.divergencias.append(motivo)
-            state.log.append(f"[check_bolsistas] FALHOU — {motivo}")
+            novos_checks.append(CheckResult(passou=False, motivo=motivo, evidencia=evidencia))
+            novas_divergencias.append(motivo)
+            novos_logs.append(f"[check_bolsistas] FALHOU — {motivo}")
         else:
             motivo = f"Bolsista '{nome_declarado}' validado com sucesso (Nome, Projeto e Vigência corretos)."
             evidencia = f"Período Declarado: {declarado_inicio} a {declarado_fim} | Vigência Oficial: {vigencia_oficial}"
             
-            state.check_bolsistas.append(CheckResult(passou=True, motivo=motivo, evidencia=evidencia))
-            state.log.append(f"[check_bolsistas] OK — {motivo}")
+            novos_checks.append(CheckResult(passou=True, motivo=motivo, evidencia=evidencia))
+            novos_logs.append(f"[check_bolsistas] OK — {motivo}")
 
-    return state
+    # Retorna APENAS os dados novos para o LangGraph fazer o merge
+    return {
+        "check_bolsistas": novos_checks,
+        "divergencias": novas_divergencias,
+        "log": novos_logs
+    }

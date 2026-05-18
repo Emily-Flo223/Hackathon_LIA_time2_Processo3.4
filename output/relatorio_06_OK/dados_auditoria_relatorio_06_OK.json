@@ -1,0 +1,27 @@
+{
+    "metadata": {
+        "execution_id": "fda73990-9b3f-4f6f-ac7b-99de83870f24",
+        "id_relatorio": "relatorio_06_OK",
+        "protocolo_projeto": "INQUI.598216",
+        "tipo_relatorio": "Final",
+        "titulo_projeto": "Oficinas de Ciências Multidisciplinares – Officiências",
+        "coordenador": "Felipe Rocha",
+        "decisao_final": "APROVAR"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Projeto sem recursos financeiros, alinhado com a base oficial.",
+        "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 16h | Total declarado: 16h"
+    },
+    "lista_divergencias_acumuladas": []
+}

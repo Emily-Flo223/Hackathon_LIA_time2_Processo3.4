@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "execution_id": "5f5f3a87-7dc7-46f3-af25-80c1cdd11a3f",
+        "id_relatorio": "relatorio_05_E4",
+        "protocolo_projeto": "FACOM.920391",
+        "tipo_relatorio": "Final",
+        "titulo_projeto": "Capacitação em Primeiros Socorros para Comunidades Rurais",
+        "coordenador": "Renata Dias",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Metodologia Utilizada"
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
+        "evidencia": "Declarado: R$ 2,881.99 | Oficial: R$ 2,890.67"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 134h | Total declarado: 134h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Metodologia Utilizada)"
+    ]
+}

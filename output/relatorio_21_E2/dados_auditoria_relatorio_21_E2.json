@@ -1,0 +1,29 @@
+{
+    "metadata": {
+        "execution_id": "f96fb362-ff6a-4ee4-bec0-bafc54e4d53d",
+        "id_relatorio": "relatorio_21_E2",
+        "protocolo_projeto": "FACOM.127560",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Música, Inclusão e Desenvolvimento Social",
+        "coordenador": "Marcos Ferreira",
+        "decisao_final": "DEVOLVER PARA AJUSTES"
+    },
+    "auditoria_completude": {
+        "passou": true,
+        "motivo": "Todas as seções e campos obrigatórios (incluindo Objetivo e Prestação de Contas) foram identificados.",
+        "evidencia": "Relatório 100% completo."
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Consistência financeira verificada com sucesso (dentro da tolerância de 1%).",
+        "evidencia": "Declarado: R$ 11,155.30 | Oficial: R$ 11,157.68"
+    },
+    "auditoria_horas": {
+        "passou": true,
+        "motivo": "O somatório de horas das atividades coincide com o total declarado.",
+        "evidencia": "Soma das atividades: 50h | Total declarado: 50h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E2: Bolsista 'Clara Monteiro' declarado não consta no Edital Oficial para o projeto submetido."
+    ]
+}

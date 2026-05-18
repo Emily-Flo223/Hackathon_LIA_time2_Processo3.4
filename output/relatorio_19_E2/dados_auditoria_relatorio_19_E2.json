@@ -1,0 +1,30 @@
+{
+    "metadata": {
+        "execution_id": "3d435111-87ec-4287-8739-0c907ce6bc6d",
+        "id_relatorio": "relatorio_19_E2",
+        "protocolo_projeto": "Não identificado",
+        "tipo_relatorio": "Parcial",
+        "titulo_projeto": "Consultoria Tributária Gratuita para MEIs",
+        "coordenador": "Diana Correia",
+        "decisao_final": "DEVOLVER PARA REELABORAÇÃO"
+    },
+    "auditoria_completude": {
+        "passou": false,
+        "motivo": "E4: Ausência de campos ou seções obrigatórias no relatório.",
+        "evidencia": "Campos ausentes: Atividades Realizadas"
+    },
+    "auditoria_financeira": {
+        "passou": true,
+        "motivo": "Projeto sem recursos financeiros, alinhado com a base oficial.",
+        "evidencia": "Declarado: Sem recursos | Oficial: Sem recursos"
+    },
+    "auditoria_horas": {
+        "passou": false,
+        "motivo": "E5: Inconsistência no somatório da carga horária.",
+        "evidencia": "Soma das atividades (0 itens): 0h | Total declarado pelo coordenador: 79h"
+    },
+    "lista_divergencias_acumuladas": [
+        "E4: Ausência de campos ou seções obrigatórias no relatório. (Atividades Realizadas)",
+        "E5: Inconsistência no somatório da carga horária."
+    ]
+}
