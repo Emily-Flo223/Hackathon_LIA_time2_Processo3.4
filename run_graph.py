@@ -26,7 +26,7 @@ def executar_auditoria_langgraph(caminho_relatorio: Path, app):
         extra={"execution_id": execution_id, "arquivo": caminho_relatorio.name}
     )
     
-    print(f"\n🚀 Iniciando Auditoria via LangGraph para: {caminho_relatorio.name} (ID: {execution_id[:8]})")
+    print(f"\nIniciando Auditoria via LangGraph para: {caminho_relatorio.name} (ID: {execution_id[:8]})")
     
     # Estado Inicial com o caminho do ficheiro atual e o identificador de execução universal
     estado_inicial = AgenteState(
@@ -46,13 +46,13 @@ def executar_auditoria_langgraph(caminho_relatorio: Path, app):
         extra={"execution_id": execution_id, "arquivo": caminho_relatorio.name}
     )
     
-    print(f"📌 Decisão Final para {caminho_relatorio.name}: {decisao}")
+    print(f"Decisao Final para {caminho_relatorio.name}: {decisao}")
 
 def main():
     data_dir = Path("data")
     
     if not data_dir.exists():
-        print(f"❌ Pasta '{data_dir}' não encontrada na raiz do projeto.")
+        print(f"ERRO: Pasta '{data_dir}' nao encontrada na raiz do projeto.")
         return
 
     # Procura estritamente por arquivos que comecem com 'relatorio_' 
@@ -66,15 +66,15 @@ def main():
 
     total_encontrados = len(todos_relatorios)
     if total_encontrados == 0:
-        print("❌ Nenhum relatório começando com 'relatorio_' foi localizado na pasta 'data'.")
+        print("ERRO: Nenhum relatorio comecando com 'relatorio_' foi localizado na pasta 'data'.")
         return
 
     # Aplica o limite selecionado na configuração
     relatorios_selecionados = todos_relatorios[:QUANTIDADE_A_EXECUTAR]
     
     print(f"======================================================================")
-    print(f"📊 Foram encontrados {total_encontrados} relatórios no total.")
-    print(f"⚙️ Configurado para executar os primeiros {len(relatorios_selecionados)} da fila.")
+    print(f"Foram encontrados {total_encontrados} relatorios no total.")
+    print(f"Configurado para executar os primeiros {len(relatorios_selecionados)} da fila.")
     print(f"======================================================================")
 
     # Compila o grafo apenas uma vez antes do loop de lote
@@ -82,16 +82,16 @@ def main():
 
     # Executa a pipeline do LangGraph relatório por relatório
     for idx, caminho in enumerate(relatorios_selecionados, start=1):
-        print(f"\n[Fila {idx}/{len(relatorios_selecionados)}] Processando...")
+        print(f"[Fila {idx}/{len(relatorios_selecionados)}] Processando...")
         try:
             executar_auditoria_langgraph(caminho, app)
         except Exception as e:
-            print(f"❌ Erro fatal ao processar o arquivo {caminho.name}: {str(e)}")
+            print(f"ERRO: Falha ao processar {caminho.name}: {str(e)}")
 
     print(f"\n{'-'*80}")
-    print(f"✅ Execução em lote finalizada com sucesso!")
-    print(f"📂 Todos os relatórios processados geraram pastas individuais em 'output/'.")
-    print(f"📊 A planilha 'output/consolidado_auditoria.xlsx' foi totalmente updated.")
+    print(f"Execucao em lote finalizada com sucesso!")
+    print(f"Todos os relatorios processados geraram pastas individuais em 'output/'.")
+    print(f"A planilha 'output/consolidado_auditoria.xlsx' foi totalmente atualizada.")
     print(f"{'-'*80}")
 
 if __name__ == "__main__":

@@ -11,7 +11,12 @@ pdfplumber>=0.11.0
 langchain>=0.1.0
 langchain-core>=0.1.0
 langchain-openai>=0.1.0
+langchain-community>=0.1.0
+langgraph>=0.1.0
 pydantic>=2.5.0
+
+# --- Manipulação de Dados ---
+pandas>=2.0.0
 
 # --- Interface Gráfica ---
 streamlit>=1.32.0
